@@ -1,0 +1,261 @@
+def blue<>
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+def arrowarc 
+{
+    sweep [style=thick]{215, rotate(1, [Z])} (1,0)
+    def p1 (1,0) then rotate(210, [Z])
+    def p2 (1,0) then rotate(210+30, [Z])
+    line [style=thick, style=->] (p1)(p2)
+}
+
+# The main drawing
+put {scale(0.5)*rotate(-90,[Z])}
+{   
+    # base
+    put {scale(1)}
+    {
+        put{scale([4,6,1])}{box}
+        % def rgb<>
+        put{scale(4) * translate([0,0,0])}
+        {
+            {coordsys}
+            special |\path #1 node[left] {$Z_{base}$}
+                           #2 node[below] {$X_{base}$}
+                           #3 node[right] {$Y_{base}$};|(z)(x)(y)(o)
+        }   
+       
+        line [style=dashed] (0,0,0)(0,0,-6.8)
+        line [style=dashed] (0,0,-6.8)(0.8,0,-6.8)
+        line [style=dashed] (0.8,0,-6.8)(0.8,-9,-6.8)
+        line [style=dashed] (0.8,0,-6.8)(0.8,9,-6.8)
+        
+        # right leg
+        put {translate([0.8,-7,-6.8])}
+        {
+            # right hip yaw
+            put{scale([1,1,3])}{cylinder}
+            put{translate([0,0,0]) * rotate(-90, [Z])}
+            {
+                put{scale([2.5,2.5,3])}
+                {
+                    {coordsys}
+                    special |\path #1 node[above] {$Z_{rhy}$}
+                                   #2 node[left] {$X_{rhy}$}
+                                   #3 node[left] {$Y_{rhy}$};|(z)(x)(y)(o)
+                }
+                put {translate([0,0,2.5]) * rotate(30, [Z])}{arrowarc}
+            }  
+
+            # right hip roll 
+            line [style=dashed] (0,0,0)(0,0,-3.6)
+            put {translate([0,0,-3.6]) * rotate(90,[Y])}
+            {
+                put{scale([1,1,3])}{cylinder}
+                put{translate([0,0,0])}
+                {
+                    put {scale([2,2.5,5])}
+                    {
+                        {coordsys}
+                        special |\path #1 node[left] {$Z_{rhr}$}
+                                       #2 node[right] {$X_{rhr}$}
+                                       #3 node[right] {$Y_{rhr}$};|(z)(x)(y)(o)
+                    }        
+                    put {translate([0,0,2.5]) * rotate(30, [Z])}{arrowarc}
+                }
+
+                # right hip pitch
+                line [style=dashed] (4,0,0)(4,0,-0.5)
+                put {translate([4,0,-0.5]) * rotate(-90, [X])}
+                {
+                    put{scale([1,1,3])}{cylinder}
+                    put{scale([2,3.5,4])}
+                    {
+                        {coordsys}
+                        special |\path #1 node[right] {$Z_{rhp}$}
+                                       #2 node[left] {$X_{rhp}$}
+                                       #3 node[right] {$Y_{rhp}$};|(z)(x)(y)(o)
+                    } 
+                    put {translate([0,0,2.5]) * rotate(120, [Z])}{arrowarc}
+
+                    # right knee pitch
+                    line [style=dashed] (0,0,0)(10,0,0)
+                    put {translate([10,0,0])}
+                    {
+                        put{scale([1,1,3])}{cylinder}
+                        put{scale([2,3.5,4])}
+                        {
+                            {coordsys}
+                            special |\path #1 node[right] {$Z_{rkp}$}
+                                           #2 node[left] {$X_{rkp}$}
+                                           #3 node[right] {$Y_{rkp}$};|(z)(x)(y)(o)
+                        } 
+                        put {translate([0,0,2.5]) * rotate(120, [Z])}{arrowarc}
+
+                        # right ankle pitch
+                        line [style=dashed] (0,0,0)(10,0,0)
+                        put {translate([10,0,0])}
+                        {
+                            put{scale([1,1,3])}{cylinder}
+                            put{scale([2,3.5,4])}
+                            {
+                                {coordsys}
+                                special |\path #1 node[right] {$Z_{rap}$}
+                                            #2 node[left] {$X_{rap}$}
+                                            #3 node[right] {$Y_{rap}$};|(z)(x)(y)(o)
+                            } 
+                            put {translate([0,0,2.5]) * rotate(120, [Z])}{arrowarc}
+
+                            # right ankle roll
+                            put {translate([4,0,0])* rotate(90, [X])}
+                            {
+                                put{scale([1,1,3])}{cylinder}
+                                put{scale([2,2.5,4])}
+                                {
+                                    {coordsys}
+                                    special |\path #1 node[left] {$Z_{rar}$}
+                                                   #2 node[right] {$X_{rar}$}
+                                                   #3 node[right] {$Y_{rar}$};|(z)(x)(y)(o)
+                                } 
+                                put {translate([0,0,2.5]) * rotate(30, [Z])}{arrowarc}
+                             
+                                # right foot
+                                line [style=dashed] (0,0,0)(4,0,0)
+                                put {translate([4,0,0])}
+                                {
+                                    put{scale([1,2.5,5])}{box}
+                                    put{scale([2,3,4])}
+                                    {
+                                        {coordsys}
+                                        special |\path #1 node[left] {$Z_{rfoot}$}
+                                                       #2 node[below] {$X_{rfoot}$}
+                                                       #3 node[right] {$Y_{rfoot}$};|(z)(x)(y)(o)
+                                    }   
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        # left leg
+        put {translate([0.8,7,-6.8])}
+        {
+            # left hip yaw
+            put{scale([1,1,3])}{cylinder}
+            put{translate([0,0,0]) * rotate(90, [Z])}
+            {
+                put{scale([2.5,2.5,3])}
+                {
+                    {coordsys}
+                    special |\path #1 node[above] {$Z_{lhy}$}
+                                   #2 node[right] {$X_{lhy}$}
+                                   #3 node[right] {$Y_{lhy}$};|(z)(x)(y)(o)
+                }
+                put {translate([0,0,2.5]) * rotate(-150, [Z])}{arrowarc}
+            }  
+
+            # left hip roll 
+            line [style=dashed] (0,0,0)(0,0,-3.6)
+            put {translate([0,0,-3.6]) * rotate(90,[Y])}
+            {
+                put{scale([1,1,3])}{cylinder}
+                put{translate([0,0,0])}
+                {
+                    put {scale([2,2.5,5])}
+                    {
+                        {coordsys}
+                        special |\path #1 node[left] {$Z_{lhr}$}
+                                       #2 node[right] {$X_{lhr}$}
+                                       #3 node[right] {$Y_{lhr}$};|(z)(x)(y)(o)
+                    }        
+                    put {translate([0,0,2.5]) * rotate(30, [Z])}{arrowarc}
+                }
+
+                # left hip pitch
+                line [style=dashed] (4,0,0)(4,0,-0.5)
+                put {translate([4,0,-0.5]) * rotate(-90, [X])}
+                {
+                    put{scale([1,1,3])}{cylinder}
+                    put{scale([2,3.5,4])}
+                    {
+                        {coordsys}
+                        special |\path #1 node[right] {$Z_{lhp}$}
+                                       #2 node[left] {$X_{lhp}$}
+                                       #3 node[right] {$Y_{lhp}$};|(z)(x)(y)(o)
+                    } 
+                    put {translate([0,0,2.5]) * rotate(120, [Z])}{arrowarc}
+
+                    # left knee pitch
+                    line [style=dashed] (0,0,0)(10,0,0)
+                    put {translate([10,0,0])}
+                    {
+                        put{scale([1,1,3])}{cylinder}
+                        put{scale([2,3.5,4])}
+                        {
+                            {coordsys}
+                            special |\path #1 node[right] {$Z_{lkp}$}
+                                           #2 node[left] {$X_{lkp}$}
+                                           #3 node[right] {$Y_{lkp}$};|(z)(x)(y)(o)
+                        } 
+                        put {translate([0,0,2.5]) * rotate(120, [Z])}{arrowarc}
+
+                        # left ankle pitch
+                        line [style=dashed] (0,0,0)(10,0,0)
+                        put {translate([10,0,0])}
+                        {
+                            put{scale([1,1,3])}{cylinder}
+                            put{scale([2,3.5,4])}
+                            {
+                                {coordsys}
+                                special |\path #1 node[right] {$Z_{lap}$}
+                                            #2 node[left] {$X_{lap}$}
+                                            #3 node[right] {$Y_{lap}$};|(z)(x)(y)(o)
+                            } 
+                            put {translate([0,0,2.5]) * rotate(120, [Z])}{arrowarc}
+
+                            # left ankle roll
+                            put {translate([4,0,0])* rotate(90, [X])}
+                            {
+                                put{scale([1,1,3])}{cylinder}
+                                put{scale([2,2.5,4])}
+                                {
+                                    {coordsys}
+                                    special |\path #1 node[left] {$Z_{lar}$}
+                                                   #2 node[right] {$X_{lar}$}
+                                                   #3 node[right] {$Y_{lar}$};|(z)(x)(y)(o)
+                                } 
+                                put {translate([0,0,2.5]) * rotate(30, [Z])}{arrowarc}
+                             
+                                # left foot
+                                line [style=dashed] (0,0,0)(4,0,0)
+                                put {translate([4,0,0])}
+                                {
+                                    put{scale([1,2.5,5])}{box}
+                                    put{scale([2,3,4])}
+                                    {
+                                        {coordsys}
+                                        special |\path #1 node[left] {$Z_{lfoot}$}
+                                                       #2 node[below] {$X_{lfoot}$}
+                                                       #3 node[right] {$Y_{lfoot}$};|(z)(x)(y)(o)
+                                    }   
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+global 
+{ 
+    language tikz 
+    camera rotate(0, (1,0,0)) * view((1.5,2,1),(0,0,0),[0,0,1]) * rotate(110, (0,0,1))
+}
+
+
