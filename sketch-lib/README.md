@@ -19,12 +19,12 @@
 
 1. Edit kinematics.sk file
     ```
-    $ gedit kinematics.sk
+    $ gedit uthai_kinematics.sk
     ```
 
 1. Build sk to png
     ```
-    $ ./sk2png kinetics.sk
+    $ ./sk2png uthai_kinetics.sk
     ```
     จะได้ไฟล์รูปภาพ .png มา
 
