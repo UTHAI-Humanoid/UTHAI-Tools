@@ -1,0 +1,39 @@
+def blue<>
+input{lib/defaults.sk}
+input{lib/objects.sk}
+
+def arrowarc 
+{
+    sweep [style=thick]{215, rotate(1, [Z])} (1,0)
+    def p1 (1,0) then rotate(210, [Z])
+    def p2 (1,0) then rotate(210+30, [Z])
+    line [style=thick, style=->] (p1)(p2)
+}
+
+# The main drawing
+put {scale(0.5)*rotate(165,[Z])}
+{   
+    # base
+    put {scale(1)}
+    {
+        put{scale([1,1,1])}{box}
+        def rgb<>
+        put{scale(4)}
+        {
+            input{lib/coordsys}
+            special |\path #1 node[above] {$Z_{base}$}
+                           #2 node[above] {$X_{base}$}
+                           #3 node[left] {$Y_{base}$};|(z)(x)(y)(o)
+        }   
+    }
+}
+
+
+
+global 
+{ 
+    language tikz 
+    camera rotate(0, (1,0,0)) * view((1.5,2,1),(0,0,0),[0,0,1]) * rotate(110, (0,0,1))
+}
+
+
